@@ -7,3 +7,4 @@ Write, execute, and share javascript code instantly.
 - [x] Instant execution
 - [ ] Instant execution toggle switch.
 - [ ] Offline friendly.
+- [ ] Favicon.
