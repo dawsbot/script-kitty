@@ -3,52 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <title>script-kitten v1</title>
-
-  <style type="text/css" media="screen">
-    #wrapper {
-      position: relative;
-      width: 90vw;
-      height: 90vh;
-    }
-    #editor {
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      border: 1px solid black;
-      border-radius: 3px;
-    }
-  </style>
+  <link rel="stylesheet" href="/main.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Sacramento" rel="stylesheet">
 </head>
 <body>
+
+  <h1 id="title">Script Kitten</h1>
+  <p>The Url encodes everything! Edit, execute, and share javascript code instantly.'
   <div id="wrapper">
     <div id="editor"></div>
   </div>
+
   <script src="/ace/ace.js" type="text/javascript" charset="utf-8"></script>
   <script src="/ace/mode-javascript.js" type="text/javascript" charset="utf-8"></script>
   <script src="/ace/worker-javascript.js" type="text/javascript" charset="utf-8"></script>
-  <script>
-    var editor = ace.edit("editor");
-    editor.setTheme("ace/theme/monokai");
-    editor.getSession().setMode("ace/mode/javascript");
-    editor.resize();
-
-    var myTextarea = document.getElementById('editor');
-    // fill textarea from hash on page load
-    function removeHash(hash) {
-      return hash.replace(/^\#/, '');
-    }
-    var hash = removeHash(window.location.hash);
-
-    editor.setValue(hash);
-
-    // hash input
-    editor.on('input', function(e) {
-      var val = editor.getValue();
-      window.location.hash = val;
-      eval(val);
-    });
-  </script>
+  <script src="/main.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>
