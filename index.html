@@ -55,15 +55,15 @@
     var myTextarea = document.getElementById('editor');
 
     // fill textarea from hash on page load
-    function removeHash(fullHash) {
-      return fullHash.replace(/^\#/, '');
+    function cleanHash(fullHash) {
+      return decodeURIComponent(fullHash.replace(/^\#/, ''));
     }
 
     editor.setTheme("ace/theme/github");
     editor.getSession().setMode("ace/mode/javascript");
     editor.setShowPrintMargin(false);
     editor.resize();
-    var hash = removeHash(window.location.hash);
+    var hash = cleanHash(window.location.hash);
 
     // set text editor content
     editor.setValue(hash);
