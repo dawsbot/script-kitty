@@ -1,4 +1,4 @@
-# Script Kitten
+# Script Kitty
 
 Write, execute, and share javascript code instantly.
 
