@@ -2,12 +2,19 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>script-kitten v1</title>
+  <title>script-kitty v1</title>
 
   <style type="text/css" media="screen">
+    body {
+      padding: 40px;
+    }
+    h1 {
+      font-size: 40px;
+      font-family: 'Pacifico', cursive;
+    }
     #wrapper {
       position: relative;
-      width: 90vw;
+      margin-top: 20px;
       height: 90vh;
     }
     #editor {
@@ -20,34 +27,54 @@
       border-radius: 3px;
     }
   </style>
+  <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
 </head>
 <body>
+
+  <h1>Script Kitty</h1>
+  <p>Write, execute, and share JavaScript instantly. Everything is url-encoded, so bookmarking and sharing is easy!</p>
+
+  Instant Execution on edit?
+  <input id="instant-evaluation" type="checkbox" checked/>
+  <br/>
+  Or manually trigger an <button type="button" onclick="eval(editor.getValue())">Eval</button>
+
   <div id="wrapper">
     <div id="editor"></div>
   </div>
+
+  <a href="https://github.com/dawsbot/script-kitty">Star me on GitHub</a>
+
   <script src="/ace/ace.js" type="text/javascript" charset="utf-8"></script>
   <script src="/ace/mode-javascript.js" type="text/javascript" charset="utf-8"></script>
   <script src="/ace/worker-javascript.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/ace/theme-github.js" type="text/javascript" charset="utf-8"></script>
   <script>
     var editor = ace.edit("editor");
-    editor.setTheme("ace/theme/monokai");
-    editor.getSession().setMode("ace/mode/javascript");
-    editor.resize();
-
+    var evalBox = document.getElementById('instant-evaluation');
     var myTextarea = document.getElementById('editor');
-    // fill textarea from hash on page load
-    function removeHash(hash) {
-      return hash.replace(/^\#/, '');
-    }
-    var hash = removeHash(window.location.hash);
 
+    // fill textarea from hash on page load
+    function cleanHash(fullHash) {
+      return decodeURIComponent(fullHash.replace(/^\#/, ''));
+    }
+
+    editor.setTheme("ace/theme/github");
+    editor.getSession().setMode("ace/mode/javascript");
+    editor.setShowPrintMargin(false);
+    editor.resize();
+    var hash = cleanHash(window.location.hash);
+
+    // set text editor content
     editor.setValue(hash);
 
-    // hash input
+    // hash input to url
     editor.on('input', function(e) {
       var val = editor.getValue();
       window.location.hash = val;
-      eval(val);
+      if (evalBox.checked) {
+        eval(val);
+      }
     });
   </script>
 </body>
