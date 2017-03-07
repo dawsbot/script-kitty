@@ -11,6 +11,14 @@ There is no:
 
 You own all the data yourself and can verify it with the source code.
 
+## Installation
+
+```sh
+$ yarn
+$ npm start
+$ open http://localhost:3000
+```
+
 ## Todos
 
 - [x] Instant execution
