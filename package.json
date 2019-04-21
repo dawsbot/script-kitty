@@ -7,6 +7,6 @@
   "author": "@dawsbot",
   "license": "MIT",
   "dependencies": {
-    "serve": "^3.2.7"
+    "serve": "^11.0.0"
   }
 }
